@@ -1,4 +1,3 @@
-import ErrorPage from './errorPage.js';
 export default class GetData {
     constructor(source, pageSize) {
         this.source = source;
@@ -14,8 +13,10 @@ export default class GetData {
             })
             .then(data => data.articles)
             .catch(error => {
-                const er = new ErrorPage(error.message);
-                return er.networkError();
+                import('./errorPage').then(({ default: ErrorPage }) => {
+                    const er = new ErrorPage(error.message);
+                    return er.networkError();
+                }).catch(error => 'An error occurred while loading the component');
             });
     }
 }

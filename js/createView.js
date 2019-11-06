@@ -1,10 +1,10 @@
 import CheckBox from './createCheckBox.js'
-import GetSources from './getNewsChannel.js';
+import requestFactory from './requestFactory';
 
 export default class View {
     constructor(sources = []) {
-        this.sources = new GetSources();
-        this.data = this.sources.getChannelTitle()
+        this.sources = requestFactory.create('sources');
+        this.data = this.sources.getChannelTitle();
     }
 
     async createSources() {

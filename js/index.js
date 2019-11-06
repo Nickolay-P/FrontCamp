@@ -1,6 +1,6 @@
-import GetData from './getData.js';
 import View from './createView.js';
 import Article from './createArticle.js';
+import requestFactory from './requestFactory';
 
 const pageView = new View();
 pageView.addCheckBoxexSection();
@@ -9,8 +9,10 @@ pageView.createGetNewsButton();
 
 const fetchData = async () => {
     const source = await pageView.getCheckedSources();
-    let data = new GetData(source, pageView.getFilter() > 100 ? 100 :
-        pageView.getFilter() <= 0 ? 1 : pageView.getFilter());
+    const filter = pageView.getFilter() > 100 ? 100 :
+    pageView.getFilter() <= 0 ? 1 : pageView.getFilter();
+
+    let data = requestFactory.create('data', source, filter);
     return data.getData();
 }
 
