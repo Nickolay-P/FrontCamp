@@ -26,7 +26,9 @@ Result:
 
 
 1.	Create an index which will be used by this query and provide proof (from explain() or Compass UI) that the index is indeed used by the winning plan: 
-Query: db.restaurants.explain().find({ name: "Glorious Food" })
+Query:
+db.restaurants.createIndex({'name' : 1})
+db.restaurants.explain().find({ name: "Glorious Food" })
 Result: {
         "queryPlanner" : {
                 "plannerVersion" : 1,
