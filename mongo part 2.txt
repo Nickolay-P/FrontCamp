@@ -1,4 +1,5 @@
-1.How many records does each airline class have? Use $project to show result as { class:"Z", total: 999 } ?
+1.How many records does each airline class have? Use $project to show result as { class:
+"Z", total: 999 } ?
 Query: db.airlines.aggregate(
     [
   {
@@ -24,8 +25,9 @@ Result:
 { "class" : "P", "total" : 5683 }
 { "class" : "G", "total" : 17499 }
 
-2.What are the top 3 destination cities outside of the United States (destCountry field, not included) 
-with the highest average passengers count? Show result as { "avgPassengers" : 2312.380, "city" : "Minsk, Belarus" }
+2.What are the top 3 destination cities outside of the United States (destCountry field, not
+included) with the highest average passengers count? Show result as { "avgPassengers" :
+2312.380, "city" : "Minsk, Belarus" }
 Query:db.airlines.aggregate([
   {
     "$match": {
@@ -65,8 +67,8 @@ Result:
 { "avgPassengers" : 7743.661683713612, "city" : "Atlanta, GA" }
 { "avgPassengers" : 7176.596638655462, "city" : "Dubai, United Arab Emirates" }
 
-3.Which carriers provide flights to Latvia (destCountry)? Show result as one document 
-{"_id" : "Latvia", "carriers" : [ "carrier1", " carrier2", …] }
+3.Which carriers provide flights to Latvia (destCountry)? Show result as one document {
+"_id" : "Latvia", "carriers" : [ "carrier1", " carrier2", …] }
 Query: db.airlines.aggregate([
   {
     "$match": {
@@ -79,7 +81,7 @@ Query: db.airlines.aggregate([
         "destCountry": "$destCountry"
       },
       "carriers": {
-        "$push": "$carrier"
+        $addToSet: "$carrier"
       }
     }
   },
@@ -93,11 +95,11 @@ Query: db.airlines.aggregate([
 ]
 )
 
-Result: { "_id" : "Latvia", "carriers" : [ "JetClub AG", "Blue Jet SP Z o o", "Uzbekistan Airways", "Uzbekistan Airways", "Uzbekistan Airways", "Uzbekistan Airways", "Uzbekistan Airways", "Uzbekistan Airways", "Uzbekistan Airways" ] }
+Result: { "_id" : "Latvia", "carriers" : [ "JetClub AG", "Blue Jet SP Z o o", "Uzbekistan Airways"] }
 
-4.What are the carriers which flue the most number of passengers from the United State to either Greece, Italy or Spain? 
-Find top 10 carriers, but provide the last 7 carriers (do not include the first 3). 
-Show result as { "_id" : "<carrier>", "total" : 999}
+4.What are the carriers which flue the most number of passengers from the United State to either
+Greece, Italy or Spain? Find top 10 carriers, but provide the last 7 carriers (do not include the
+first 3). Show result as { "_id" : "<carrier>", "total" : 999}
 Query:db.airlines.aggregate([
   {
     "$match": {
@@ -153,9 +155,10 @@ Result:
 { "_id" : "Norwegian Air Shuttle ASA", "total" : 13344 }
 { "_id" : "VistaJet Limited", "total" : 183 }
 
-5.Find the city (originCity) with the highest sum of passengers for each state (originState) of the United States (originCountry). 
-Provide the city for the first 5 states ordered by state alphabetically (you should see the city for Alaska, Arizona and etc). 
-Show result as {"totalPassengers" : 999, "location" : { "state" : "abc", "city" : "xyz"} }
+5.Find the city (originCity) with the highest sum of passengers for each state (originState)
+of the United States (originCountry). Provide the city for the first 5 states ordered by state
+alphabetically (you should see the city for Alaska, Arizona and etc). Show result as {
+"totalPassengers" : 999, "location" : { "state" : "abc", "city" : "xyz"} }
 db.airlines.aggregate([
   {
     "$match": {
