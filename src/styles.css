@@ -135,6 +135,7 @@
 
 .searchPanel {
     display: flex;
+    margin: 1vw;
 }
 
 .searchTitleGenre{

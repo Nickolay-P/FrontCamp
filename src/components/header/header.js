@@ -5,12 +5,12 @@ import {FilmInfo} from "./filmInfo/filmInfo.js"
 export class Header extends Component {
     render() {
       return (
-        // <div className="header">
-        //     <Search />
-        // </div>
         <div className="header">
-             <FilmInfo />    
+            <Search />
         </div>
+        // <div className="header">
+        //      <FilmInfo />    
+        // </div>
       );
     }
   }
