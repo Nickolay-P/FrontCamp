@@ -1,0 +1,57 @@
+section {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 30px;
+  max-width: 700px;
+  margin: 15px auto;
+  background: rgba($color: #ffffff, $alpha: 0.5);
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, .2);
+  color: black;
+
+  .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0 15px;
+
+    p, a {
+      font-size: 16px;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  .image {
+    display: flex;
+    justify-content: center;
+    max-width: 200px;
+    width: 100%;
+
+    img {
+      max-width: initial;
+      width: auto;
+      max-height: 100px;
+    }
+  }
+}
+
+.content-controler {
+  button {
+    width: 100%;
+  }
+}
+
+button {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.to-home {
+  display: block;
+  margin: 0 auto;
+}
