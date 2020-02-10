@@ -1,0 +1,40 @@
+.news-creator {
+  margin-top: 20px;
+  height: 100%;
+  padding: 1vw 3vw 1vw 2vw;
+  background: rgba($color: #ffffff, $alpha: 0.6);
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  input,
+  textarea {
+    padding: 6px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #232323;
+    background: rgba($color: #ffffff, $alpha: 0.6);
+    resize: vertical;
+  }
+
+  button {
+    background-color: inherit;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 1px solid #232323;
+    cursor: pointer;
+    width: 120px;
+
+    &:hover {
+      background-color: #d5d5d5;
+    }
+  }
+}
+
+.save-btn {
+  background: rgba($color: #ffffff, $alpha: 0.6);
+  color: black;
+}

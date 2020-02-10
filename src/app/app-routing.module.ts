@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { EditPageComponent } from './pages/edit-page/edit-page.component';
-import { NewsPageComponent } from './pages/news-page/news-page.component';
+import { MainComponent } from "./main/main.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
+import { EditorComponent } from "./editor/editor.component";
+import { CreatorComponent } from "./creator/creator.component";
 
 
 const routes: Routes = [
-  { path: 'edit/:id', component: EditPageComponent, data: { type: 'edit' }  },
-  { path: 'news/:id', component: NewsPageComponent },
-  { path: 'add', component: EditPageComponent, data: { type: 'add' } },
-  { path: '404', component: NotFoundPageComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: '**', redirectTo: '/404' }
+  { path: '', component: MainComponent},
+  { path: 'edit/:id', component: EditorComponent},
+  { path: 'create', component: CreatorComponent},
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+
 })
 export class AppRoutingModule { }

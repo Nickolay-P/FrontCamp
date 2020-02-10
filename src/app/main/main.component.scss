@@ -1,0 +1,101 @@
+button {
+  background-color: inherit;
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: 1px solid #232323;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d5d5d5;
+  }
+}
+
+.tools {
+  display: flex;
+  justify-content: space-around;
+  height: 70px;
+  align-items: center;
+  background: rgba($color: #ffffff, $alpha: 0.6);
+
+  input {
+    background: rgba($color: #ffffff, $alpha: 0.2);
+  }
+  .resources {
+    text-align: left;
+    display: flex;
+    align-items: center;
+
+    select {
+      margin-left: 5px;
+      padding: 5px 10px;
+    }
+
+    .my-news {
+      margin-left: 20px;
+    }
+  }
+
+  .news-filter input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #232323;
+  }
+}
+
+.article-list {
+  background: rgba($color: #ffffff, $alpha: 0.4);
+  padding: 2vw;
+}
+.articles {
+  margin: 1.5vw 0;
+
+  .article {
+    display: flex;
+    margin-bottom: 20px;
+
+    .description {
+      flex: 2;
+      // max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .title {
+        margin-bottom: 7px;
+      }
+    }
+
+    img {
+      object-fit: cover;
+      max-width: 20vw;
+      flex: 1;
+      margin-right: 20px;
+    }
+
+    a{
+      color: black;
+      font-size: 1.5em;
+    }
+  }
+}
+
+.arcticle-btns{
+  display: flex;
+  button{
+    margin: 0 1vw;
+    flex:1;
+  }
+}
+
+.btn-block {
+  display: flex;
+}
+.load-more-cta {
+  margin: 20px auto;
+  background: rgba($color: #ffffff, $alpha: 0.4);
+}
+
+::placeholder {
+  color: black;
+}

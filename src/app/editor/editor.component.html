@@ -1,0 +1,17 @@
+<div class="news-creator">
+  <div>
+    <label for="title">Title:</label>
+    <input id="title" class="title" type="text" [(ngModel)]="article.title"/>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea class="description" id="description" [(ngModel)]="article.description"></textarea>
+  </div>
+  <div>
+    <label for="image">Url to image:</label>
+    <input class="url" id="image" type="text" [(ngModel)]="article.urlToImage"/>
+  </div>
+  <div>
+    <button [disabled]="disableSave()" (click)="save()" class='save-btn'>Save</button>
+  </div>
+</div>
