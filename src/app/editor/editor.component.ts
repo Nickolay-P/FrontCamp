@@ -10,7 +10,11 @@ import { NewsService } from "../news.service";
 export class EditorComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private newsService: NewsService) {}
-  private article = <any>{};
+  private article = {
+    title: '',
+    description: '',
+    urlToImage: ''
+  };
 
   ngOnInit() {
     this.article = this.newsService.getArticleById(this.route.snapshot.paramMap.get('id'));
@@ -22,6 +26,6 @@ export class EditorComponent implements OnInit {
   }
 
   disableSave() {
-    return !(this.article.title && this.article.description! && this.article.urlToImage!);
+    return !(this.article.title && this.article.description && this.article.urlToImage);
   }
 }

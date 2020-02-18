@@ -8,44 +8,56 @@ import { NewsService } from '../news.service';
 })
 export class MainComponent implements OnInit {
   constructor(private newsService: NewsService){}
-  private news = [];
+  public news = [];
+  public sources = [];
+  pu
   private searchValue = '';
   private disableSelect = false;
-  private selectedNewsType = 'Verge';
+  private selectedNewsSource = 'BBC';
   private loadMore = false;
 
 
-  // ['The Verge', 'the-verge'],
-
   ngOnInit(){
-    this.newsService.getNewsFromAPI().subscribe(data => {
+    this.newsService.getSources().subscribe(data => {
+      this.sources = data["sources"];
+      this.sources.forEach(element => {
+        if (element.id == 'google-news-uk'){
+          this.sources.splice(this.sources.indexOf(element),1);
+        }
+      });
+      console.log();
+    });
+    this.newsService.getNewsForSingleSource("the-verge").subscribe(data => {
       this.news = data["articles"];
     });
   }
 
-  showNews(type) {
-    switch (type) {
-      case 'Verge':
-        this.showBBCNews();
-        break;
+  showNews(source) {
+    switch (source) {
       case  'local':
         this.showLocalNews();
         break;
+      case  'all':
+        this.showAllNews();
+        break;
       default:
-        this.showAllNews()
+        this.showNewsFromSource(source)
     }
   }
 
-  showBBCNews() {
-    this.newsService.getNewsFromAPI().subscribe(data => {
+  showNewsFromSource(source) {
+    this.newsService.getNewsForSingleSource(source).subscribe(data => {
       this.news = data["articles"];
     });
   }
 
   showAllNews() {
-    this.newsService.getNewsFromAPI().subscribe(data => {
-      this.news = [...this.newsService.getMyNews(), ...this.newsService.getLocalNews(), ...data["articles"]];
+    this.sources.forEach(element => {
+      this.newsService.getNewsForSingleSource(element.id).subscribe(data => {
+        this.news = [...data["articles"]];
+      });
     });
+    // this.news = [...this.newsService.getMyNews(), ...this.newsService.getLocalNews()];
   }
 
   showLocalNews() {
@@ -56,7 +68,7 @@ export class MainComponent implements OnInit {
     if(!this.disableSelect) {
       this.news = this.newsService.getMyNews();
     } else {
-      this.showNews(this.selectedNewsType)
+      this.showNews(this.selectedNewsSource);
     }
     this.disableSelect = !this.disableSelect;
   }

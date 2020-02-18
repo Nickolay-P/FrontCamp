@@ -11,5 +11,6 @@ export class LoadMorePipe implements PipeTransform {
       return items.slice(0, 4);
     }
     return items;
+
   }
 }

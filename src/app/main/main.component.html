@@ -1,9 +1,11 @@
 <div class="tools">
   <div class="resources">
     <!-- <label for="resource">Select resource:</label> -->
-    <select id="resource" [disabled]="disableSelect" [(ngModel)]="selectedNewsType"
-      (change)="showNews($event.target.value)">
-      <option value="Verge">The Verge</option>
+    <select id="resource" [disabled]="disableSelect" [(ngModel)]="selectedNewsSource"
+      (change)="showNews($event.target.value)" required>
+      <option value="" disabled selected>Select source of news</option>
+      <option value="the-verge">The Verge</option>
+      <option *ngFor="let source of sources" value="{{source.id}}">{{source.name}}</option>
       <option value="local">Local news</option>
       <option value="all">All news</option>
     </select>
@@ -24,7 +26,7 @@
   <div class="articles" *ngFor="let article of news | filter : searchValue | loadMore : loadMore">
     <div class="article">
       <img src="{{article.urlToImage}}" />
-      <div class="description">
+      <div class="article-description"> 
         <div>
           <div class="title">
             <div *ngIf="article.url;else without_url">
@@ -34,10 +36,10 @@
               <b>{{article.title}}</b>
             </ng-template>
           </div>
-          <div>{{article.description}}</div>
+          <div class="description">{{article.description}}</div>
         </div>
         <div *ngIf="article.author == 'Me'" class='arcticle-btns'>
-          <button [routerLink]="['edit', article.id]" routerLinkActive="active">Edit</button>
+          <button class='edit-button' [routerLink]="['edit', article.id]" routerLinkActive="active">Edit</button>
           <button (click)="deleteArticle(article.id)">Delete</button>
         </div>
       </div>

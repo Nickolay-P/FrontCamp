@@ -11,12 +11,23 @@ button {
 }
 
 .tools {
+  padding-top: 3vw;
   display: flex;
   justify-content: space-around;
-  height: 70px;
+  flex-direction: row;
+  height: 6vw;
   align-items: center;
   background: rgba($color: #ffffff, $alpha: 0.6);
 
+  @media (max-width: 1100px) {
+    // padding-top: calc( 2rem + 2vw);
+    height: 16vw;
+    flex-direction: column;
+  }
+
+  & > div {
+    margin: 0 0.5vw;
+  }
   input {
     background: rgba($color: #ffffff, $alpha: 0.2);
   }
@@ -54,7 +65,7 @@ button {
     display: flex;
     margin-bottom: 20px;
 
-    .description {
+    &-description {
       flex: 2;
       // max-width: 400px;
       display: flex;
@@ -73,18 +84,18 @@ button {
       margin-right: 20px;
     }
 
-    a{
+    a {
       color: black;
       font-size: 1.5em;
     }
   }
 }
 
-.arcticle-btns{
+.arcticle-btns {
   display: flex;
-  button{
+  button {
     margin: 0 1vw;
-    flex:1;
+    flex: 1;
   }
 }
 

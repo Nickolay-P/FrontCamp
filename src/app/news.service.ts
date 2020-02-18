@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+// const apiKey = '&apiKey=20127fe787434a88a4a0f9c21431765c';
+const apiKey = '&apiKey=24a38ef32e0f4ef0a20c69719a0d60c9';
+const baseUrl = 'https://newsapi.org/';
+
 @Injectable({
   providedIn: 'root'
 })
 export class NewsService {
   constructor(private http: HttpClient) { }
-  readonly API_URL = 'https://newsapi.org/v1/articles?source=the-verge&apiKey=20127fe787434a88a4a0f9c21431765c';
   private localNews = [
     {
       author:	"Local",
@@ -25,14 +28,15 @@ export class NewsService {
     {
       id: 1,
       author:	"Me",
-      title:	"Amazing title",
-      description:	"My name is John Catsvill and here is my story...",
+      title:	"Test",
+      description:	"Test",
       urlToImage:	"https://images.theconversation.com/files/301743/original/file-20191114-26207-lray93.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip"
     }
   ];
 
-  getNewsFromAPI() {
-    return this.http.get(this.API_URL);
+  getNewsForSingleSource(source: string) {
+    console.log(this.createUrl('v1/articles?source=' + source));
+    return this.http.get(this.createUrl('v1/articles?source=' + source));
   }
 
   getLocalNews() {
@@ -41,6 +45,11 @@ export class NewsService {
 
   getMyNews() {
     return this.myNews;
+  }
+
+  getSources() {
+    console.log(this.createUrl('v2/sources?country=gb'));
+    return this.http.get(this.createUrl('v2/sources?country=gb'));
   }
 
   getArticleById(id){
@@ -59,4 +68,7 @@ export class NewsService {
     this.myNews.push(article);
   }
 
+  private createUrl(details: string) {
+    return baseUrl + details + apiKey;
+  }
 }
